@@ -1,0 +1,53 @@
+Author 
+Id,  Name, publication_id
+
+Publication
+Id,  Name, Book_id, Comics_id, Magazine_id, author_id
+	 Book  1231									1
+	 Comics			2321						2
+	 Magazine					88882			4
+	 
+	 
+	 
+Book : title, year, genre
+{
+	"publication":"Book",
+	"title":"Title1",
+	"year":"1992",
+	"genre":"Novel,",
+	"authors":[{"name":"Prem Chand"}]
+}
+
+Comics: title, year, hero
+{
+	"publication":"Comics",
+	"title":"ComTitle",
+	"year":"1990",
+	"hero":"Chacha Choudhary",
+	"authors":[{"name":"Gupta"}]
+}
+
+Magazine: title, year, type
+{
+	"publication":"Magazine",
+	"title":"Test1",
+	"year":"1990",
+	"type":"Printed",
+	"authors":[{"name":"Gupta"}]
+}
+atomic integer
+
+select * from book where year= 1990 and id in (select from Book_id from publication where author_id in (select id from author where name ='Stephen King') and name = 'Book')
+
+select * from Comics where year= 1990 and id in (select from Book_id from publication where author_id in (select id from author where name ='Stephen King') and name = 'Book')
+
+select * from book where year= 1990 and id in (select from Book_id from publication where author_id in (select id from author where name ='Stephen King') and name = 'Book')
+
+SELECT UP.FIRST_NAME, UP.LAST_NAME, U.EMAIL_ADDRESS, UPH.PHONE_NUMBER, UR.REG_AMEX_GUID, UR.CARD_ID, UR.USER_ID, UR.CARD_NUMBER, UR.PREV_CARD_ID FROM USER_REGISTERED_CARD UR LEFT JOIN USER_PROFILE UP ON UR.USER_ID = UP.USER_ID LEFT JOIN USER U on UP.USER_ID=U.USER_ID LEFT JOIN USER_PHONE UPH on U.USER_ID=UPH.USER_ID WHERE UR.EIRN IN (?) AND UR.DELETE_FLAG='N' AND UR.CARD_STATUS='A' ORDER BY UR.LAST_MODIFIED DESC WITH UR
+
+SELECT * FROM PUBLICATION;
+SELECT * FROM AUTHOR;
+
+SELECT * FROM AUTHOR_PUBLICATION ;
+
+SELECT * FROM AUTHOR_PUBLICATIONS;
